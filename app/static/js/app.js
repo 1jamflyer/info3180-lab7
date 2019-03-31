@@ -45,6 +45,7 @@ const Home = Vue.component('home', {
 
 const Upload = Vue.component('upload-form',{
     template:`
+    <div>
     <h1>Upload Photo</h1>
         <form id="uploadForm" @submit.prevent="UploadForm" enctype="multipart/form-data">
             <label>Description:</label><br/>
@@ -53,6 +54,7 @@ const Upload = Vue.component('upload-form',{
             <input id="photo" type="file" name='photo' style="display: none" v-on:change = "onFileSelected" /><br/>
             <input type="submit" value="Upload" class="btn btn-success"/>
         </form>
+    </div>
     `,
     methods: {
         UploadForm: function(){
@@ -126,8 +128,7 @@ const router = new VueRouter({
     mode: 'history',
     routes: [
         {path: "/", component: Home},
-        // Put other routes here
-
+        {path: "/upload", component: Upload},// Put other routes here
         // This is a catch all route in case none of the above matches
         {path: "*", component: NotFound}
     ]

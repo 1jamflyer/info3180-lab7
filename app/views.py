@@ -7,7 +7,7 @@ This file creates your application.
 
 from app import app
 from flask import render_template, request, jsonify
-from forms import UploadForm
+from .forms import UploadForm
 from werkzeug.utils import secure_filename
 import os 
 
@@ -39,6 +39,7 @@ def upload():
         description=form.description.data
         photoData= form.photo.data
         filename= secure_filename(photoData.filename)
+        photoData.save(os.path.join(app.config["UPLOAD_FOLDER"], filename))
         return jsonify(message="200", filename=filename, description=description)
        
     return jsonify(errors=form_errors(form))
