@@ -39,12 +39,8 @@ def upload():
         description=form.description.data
         photoData= form.photo.data
         filename= secure_filename(photoData.filename)
-        try:
-            photoData.save(os.path.join(app.config["UPLOAD_FOLDER"], filename))
-            return jsonify(message="200", filename=filename, description=description)
-        except Exception as e:
-            print e
-            return jsonify(errors=["internal Error"])
+        return jsonify(message="200", filename=filename, description=description)
+       
     return jsonify(errors=form_errors(form))
 
 
